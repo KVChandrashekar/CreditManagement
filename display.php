@@ -12,10 +12,25 @@
     <?php
         include("connection.php");
         ?>
+        
+        <style type="text/css">
+ .list-group{
+  width: auto;
+  height: auto;
+ }
+
+ .container{
+  padding: auto;
+  width: auto;
+  height: 100%;
+ }
+</style>
+
+
 </head>
 <body>
     <?php
-   $query="SELECT * FROM USERS";
+   $query="SELECT * FROM users";
    $data=mysqli_query($conn,$query);
    $total=mysqli_num_rows($data);
 
@@ -30,7 +45,7 @@
      ?>
             <a class="list-group-item list-group-item-action flex-column align-items-start"
                            href='display.php?id=<?php echo $result['id']; ?>'>
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="chat_img"> </div>
+                <div class="chat_img"> <img src="profile.jpg" alt="chat_img"> </div>
                 <?php echo $result['name'];}
     }
      else
@@ -42,12 +57,12 @@
         </div>
         <?php
    if (isset($_GET["id"])) { $id  = $_GET["id"]; } else { $id=0; };
-   $data=mysqli_query($conn,"SELECT * FROM USERS WHERE id=$id ");
+   $data=mysqli_query($conn,"SELECT * FROM users WHERE id=$id ");
    $total=mysqli_num_rows($data);
    $result =mysqli_fetch_array($data);
 ?>
 
-        <div class="msgs">
+        <div class="col-sm-6">
             <div class="panel-heading">
                 <h3 class="panel-title">User Information :</h3>
             </div>
@@ -58,7 +73,7 @@
                             <td>Name:</td>
                             <td>
                                    <?php $val = isset($result['name']) ? $result['name'] : 0;
-										 echo $val;?>
+                     echo $val;?>
 
                             </td>
                         </tr>
@@ -66,21 +81,21 @@
                             <td>Account ID:</td>
                             <td>
                                 <?php $val = isset($result['id']) ? $result['id'] : 0;
-										 echo $val;?>
+                     echo $val;?>
                             </td>
                         </tr>
                         <tr>
                             <td>Email:</td>
                             <td>
                                 <?php $val = isset($result['email']) ? $result['email'] : 0;
-										 echo $val;?>
+                     echo $val;?>
                             </td>
                         </tr>
                         <tr>
                             <td>Credits</td>
                             <td>
-                                    <?php $val = isset($result['credit']) ? $result['credit'] : 0;
-                                         echo $val;?>
+                <?php $val = isset($result['credit']) ? $result['credit'] : 0;
+                     echo $val;?>
                             </td>
                         </tr>
                     </tbody>
@@ -93,7 +108,25 @@
             <br>
             <form class="form-group" action="payment.php" method="post">
                 <?php
-   $query="SELECT name FROM USERS";
+   $query="SELECT name FROM users";
+   $data=mysqli_query($conn,$query);
+    ?>
+                <div class="col-sm-6">
+                    <label for="from">Select User From:</label>
+                    <select class="form-control" name="from">
+                        <option value="null">Not Selected</option>
+                <?php 
+          while($result= mysqli_fetch_array($data))
+          {
+           echo "<option value='" . $result['name']. "'>" . $result['name'] . "</option>";
+            
+          }
+          ?>
+                    </select>
+                </div>
+
+            <?php
+   $query="SELECT name FROM users";
    $data=mysqli_query($conn,$query);
                                 
     ?>
@@ -110,23 +143,6 @@
           ?>
                     </select>
                 </div>
-                <?php
-   $query="SELECT name FROM USERS";
-   $data=mysqli_query($conn,$query);
-    ?>
-                <div class="col-sm-6">
-                    <label for="from">Select User From:</label>
-                    <select class="form-control" name="from">
-                        <option value="null">Not Selected</option>
-                <?php 
-          while($result= mysqli_fetch_array($data))
-          {
-           echo "<option value='" . $result['name'] . "'>" . $result['name'] . "</option>";
-            
-          }
-          ?>
-                    </select>
-                </div>
                 <div class="col-sm-6">
                     <label for="amount">Credits:</label>
                     <input class="form-control" type="number" name="amount" min=1 autocomplete="off">
@@ -135,14 +151,21 @@
                 <div class="col-sm-6 nopadding">
                     <br>
                     <div class="buttons">
-                        <button type="submit" class="btn" name="submit" value="submit">Transfer</button>
-                        <a href="history.php " class="btn">History</a>
+                        <button type="submit" class="btn" name="submit" value="submit">Transfer credits</button>
+                        <a href="history.php " class="btn">Transcations List</a>
+                        <a href="index.html" class="btn">Back to Index page</a>
                     </div>
                     </div>        
                 </div>
                
             </form>
-       
+       <!-- <div >
+          <a href="index.html"><button class="backk">Back</button></a>
+
+       </div> -->
+
+
+
     </div>
  
 </body>

@@ -5,7 +5,7 @@ font-size:24px;
 line-height: none;
 }
 .container{
-max-width:1170px;
+max-width:auto;
 }
 img{ max-width:90%;}
 .list-group{
@@ -26,10 +26,10 @@ img{ max-width:90%;}
   padding: 30px;
 }
 .msgs {
-  float: left;
-  padding: 30px;
-  height:800px;
-  width:50vw;
+  /*float: right;*/
+  padding: auto;
+  height:auto;
+  width:auto;
 }
 
 .myclass{
@@ -43,7 +43,7 @@ img{ max-width:90%;}
     padding: 10px 15px;
     margin: 10px;
     width:360px;
-    height=119px;
+    height:119px;
     background-color: #428BCA;
     border-color: #428BCA;
     color: #FFFFFF;
@@ -60,6 +60,8 @@ img{ max-width:90%;}
 }   
 
 .panel-title {
+    width: auto;
+    height: auto;
     font-size: 32px;
     font-weight:bold;
     margin: 10px;
@@ -113,3 +115,12 @@ img{ max-width:90%;}
   background-color: #74de0b;
 }
 
+/*.his{
+    font-size: 2px;
+}*/
+
+.backk button{
+    position:relative;
+left: 50%;
+margin-top:50%;
+}

@@ -17,7 +17,7 @@ echo '<script>alert("Welcome")</script>';
 </head>
 <body>
     <?php
-   $query="SELECT * FROM USERS";
+   $query="SELECT * FROM users";
    $data=mysqli_query($conn,$query);
    $total=mysqli_num_rows($data);
 
@@ -44,12 +44,12 @@ echo '<script>alert("Welcome")</script>';
         </div>
         <?php
    if (isset($_GET["id"])) { $id  = $_GET["id"]; } else { $id=0; };
-   $data=mysqli_query($conn,"SELECT * FROM USERS WHERE id=$id ");
+   $data=mysqli_query($conn,"SELECT * FROM users WHERE id=$id ");
    $total=mysqli_num_rows($data);
    $result =mysqli_fetch_array($data);
 ?>
 
-        <div class="mesgs">
+        <div class="msgs">
             <div class="panel-heading">
                 <h3 class="panel-title">User Information</h3>
             </div>
@@ -59,25 +59,29 @@ echo '<script>alert("Welcome")</script>';
                         <tr>
                             <td>Name:</td>
                             <td>
-                                <?php echo $result['name'] ?>
+                        <?php $val = isset($result['name']) ? $result['name'] : 0;
+                     echo $val;?>
                             </td>
                         </tr>
                         <tr>
                             <td>Account ID:</td>
                             <td>
-                                <?php echo $result['id'] ?>
+            <?php $val = isset($result['id']) ? $result['id'] : 0;
+                     echo $val;?>
                             </td>
                         </tr>
                         <tr>
                             <td>Email:</td>
                             <td>
-                                <?php echo $result['email'] ?>
+                 <?php $val = isset($result['email']) ? $result['email'] : 0;
+                 echo $val;?>;
                             </td>
                         </tr>
                         <tr>
                             <td>Credits</td>
                             <td>
-                                <?php echo $result['credit'] ?>
+                               <?php $val = isset($result['credit']) ? $result['credit'] : 0;
+                     echo $val;?>
                             </td>
                         </tr>
                     </tbody>
@@ -90,7 +94,7 @@ echo '<script>alert("Welcome")</script>';
             <br>
             <form class="form-group" action="payment.php" method="post">
                 <?php
-   $query="SELECT name FROM USERS";
+   $query="SELECT name FROM users";
    $data=mysqli_query($conn,$query);
                                 
     ?>
@@ -108,7 +112,7 @@ echo '<script>alert("Welcome")</script>';
                     </select>
                 </div>
                 <?php
-   $query="SELECT name FROM USERS";
+   $query="SELECT name FROM user";
    $data=mysqli_query($conn,$query);
     ?>
                 <div class="col-sm-6">
@@ -122,7 +126,7 @@ echo '<script>alert("Welcome")</script>';
             
           }
           ?>
-                    </select>
+              </select>
                 </div>
                 <div class="col-sm-6">
                     <label for="amount">Credits:</label>

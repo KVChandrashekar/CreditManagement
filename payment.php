@@ -1,4 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <!-- <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0"> -->
+</head>
+<body>
 
+</body>
+</html>
 <?php       
 include "display.php";
             include "connection.php";
@@ -21,28 +30,30 @@ include "display.php";
             $res2=mysqli_fetch_array($data);
             $newmoney1  = ($res1['credit'] + (int)$amount);
             $newmoney2  = ($res2['credit'] - (int)$amount);
-            if($res2['credit']<$amount)
+            if($res2['credit']<$amount && $amount>$res1['credit'])
             {
-                
-              echo "ERROR!!!";
-            
+             echo '<script>alert("enter correct amount")</script>';
             }
+           
             else if((!(is_numeric($_POST['amount'])) || $_POST['amount'] == 0 || $_POST['amount'] == " "))
             {
-               echo "ERROR!!!";
+               echo '<script>alert("Error cannot transfer credits")</script>';
+              
             }
             else if($_POST['to'] === 'null' || $_POST['from'] === 'null' ) {
             
-            echo 'ERROR: No username selected!';
+            echo '<script>alert("select user name c")</script>';
+           
              }  
             else if($_POST['to']== $_POST['from']){
-                echo"ERROR: Cannot transfer money to yourself!";
+               echo '<script>alert("cant transfer to urself")</script>';
+              
             }
             else
             {
-            $sql="UPDATE USERS SET credit='$newmoney1' WHERE name='$to';";
+            $sql="UPDATE users SET credit='$newmoney1' WHERE name='$to';";
             mysqli_query($conn,$sql);
-            $sql="UPDATE USERS set credit='$newmoney2' WHERE name='$from';";
+            $sql="UPDATE users set credit='$newmoney2' WHERE name='$from';";
             mysqli_query($conn,$sql);
             //echo  "Credits Transfered";
             echo '<script>alert("Transfer Successufully....")</script>';

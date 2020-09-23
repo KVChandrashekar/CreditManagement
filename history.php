@@ -3,6 +3,13 @@
 <head>
   <title>History-page</title>
   <style type="text/css">
+*{
+  
+  height: auto;
+  overflow: auto;
+}
+
+
 .cap{
   font-size: 28px;
   border:none;
@@ -14,6 +21,9 @@
 }
 .cent{
   text-align: center;
+  width: 100%;
+  height: auto;
+  overflow-y: hidden;
   /*justify-content: center;*/
 }
 .cap:hover{
