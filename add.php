@@ -1,7 +1,7 @@
 <!-- <!DOCTYPE html> -->
 <html>
 <head>
-    <title>addu</title>
+    <title>added-Newuser</title>
 </head>
 <body style="background-color: gray; padding: 0;">
      <?php
